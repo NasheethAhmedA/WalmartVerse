@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://csds8vxbqm4ww"]
+
+[ext_resource type="Texture2D" uid="uid://bkd30ctuy21up" path="res://assets/world_env_stuff/citrus_orchard_puresky_1k.hdr" id="1_7dlsq"]
+[ext_resource type="PackedScene" uid="uid://boqddvlpljf38" path="res://assets/medieval_town/medieval_town.tscn" id="2_rwgxs"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_prg22"]
+panorama = ExtResource("1_7dlsq")
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_fya8s"]
+sky_material = SubResource("PanoramaSkyMaterial_prg22")
+
+[sub_resource type="Environment" id="Environment_j2uf1"]
+background_mode = 2
+sky = SubResource("Sky_fya8s")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="world" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.529069, 0.569665, -0.628941, -0.847727, -0.321624, 0.421802, 0.0380031, 0.756333, 0.653082, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j2uf1")
+
+[node name="MedievalTown" parent="." instance=ExtResource("2_rwgxs")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 55, 2, 0)
